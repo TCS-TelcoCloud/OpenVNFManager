@@ -1,0 +1,15 @@
+[submodule "vnfsvc"]
+	path = vnfsvc
+	url = https://github.com/TCS-TelcoCloud/vnfsvc.git
+[submodule "heat"]
+	path = heat
+	url = https://github.com/TCS-TelcoCloud/heat.git
+[submodule "python-vnfsvcclient"]
+	path = python-vnfsvcclient
+	url = https://github.com/TCS-TelcoCloud/python-vnfsvcclient.git
+[submodule "vnfmanager"]
+	path = vnfmanager
+	url = https://github.com/TCS-TelcoCloud/vnfmanager.git
+[submodule "vnfsvc_examples"]
+	path = vnfsvc_examples
+	url = https://github.com/TCS-TelcoCloud/vnfsvc_examples.git

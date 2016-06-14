@@ -1,2 +1,0 @@
-global-include *
-recursive-exclude .git *

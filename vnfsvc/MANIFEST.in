@@ -1,2 +1,0 @@
-include vnfsvc/db/migration/alembic.ini
-recursive-include vnfsvc/db/migration/alembic_migrations/versions *

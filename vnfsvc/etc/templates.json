@@ -1,0 +1,9 @@
+{
+  "nsd": {
+    "webservice": "mention the path of the nsd_template exists in vnfsvc_examples"
+  },
+  "vnfd": {
+    "webserver": "mention the path of the vnfd_vAS exists in vnfsvc_examples",
+    "loadbalancer": "mention the path of the vnfd_vLB exists in vnfsvc_examples"
+  }
+}

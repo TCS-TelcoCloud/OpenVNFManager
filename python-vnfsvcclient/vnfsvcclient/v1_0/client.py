@@ -215,7 +215,6 @@ class Client(object):
     def create_template(self, body=None):
         return self.post(self.templates_path, body=body)
 
-    # ADDED BY ANIRUDH FOR METRICS
     @APIParamsCall
     def show_metric(self, metric, **_params):
         return self.get(self.metric_path % metric, params=_params)
@@ -223,9 +222,7 @@ class Client(object):
     @APIParamsCall
     def list_metrics(self, retrieve_all=True, **_params):
         return self.list('metrics', self.metrics_path, retrieve_all, **_params)
-    # ENDS HERE
 
-    # ADDED BY ANIRUDH
 
     @APIParamsCall
     def create_configuration(self, body=None):
@@ -309,9 +306,7 @@ class Client(object):
             des_error_body = self.deserialize(response_body, status_code)
         except Exception:
             # If unable to deserialized body it is probably not a
-            # vnfsvc error
             des_error_body = {'message': response_body}
-        # Raise the appropriate exception
         exception_handler_v20(status_code, des_error_body)
 
     def _check_uri_length(self, action):
@@ -416,7 +411,6 @@ class Client(object):
                                   headers=headers, params=params)
 
     def post(self, action, body=None, headers=None, params=None):
-        # Do not retry POST requests to avoid the orphan objects problem.
         return self.do_request("POST", action, body=body,
                                headers=headers, params=params)
 

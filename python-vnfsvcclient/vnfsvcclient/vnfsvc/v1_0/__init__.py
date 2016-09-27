@@ -135,7 +135,6 @@ def add_show_list_common_argument(parser):
         default=[])
 
 
-## ADDED BY ANIRUDH
 #  To accept a non mandatory argument
 #  vdu_name to filter the driver details.
 def add_vdu_specification_for_driver(parser):
@@ -144,7 +143,6 @@ def add_vdu_specification_for_driver(parser):
         help=_('Display Driver details information for specific VDU.'),
         required=False,
         default=None, )
-# ENDS HERE 
 
 def add_pagination_argument(parser):
     parser.add_argument(
@@ -705,7 +703,6 @@ class ShowCommand(VNFSvcCommand, show.ShowOne):
     def get_parser(self, prog_name):
         parser = super(ShowCommand, self).get_parser(prog_name)
         add_show_list_common_argument(parser)
-        # ADDED BY ANIRUDH FOR ACCEPTING CUSTOM ARGUMENTS TO THE URL OF THE SHOW
         # like localhost:9010/service_drivers/<id>?vdu=<vdu-name>
         # currently this function is a placebo for the above server request as it
         # requires client to embed the vdu field into the url.
@@ -715,7 +712,6 @@ class ShowCommand(VNFSvcCommand, show.ShowOne):
         # localhost:9010/service_drivers/<id>
         if prog_name.split(' ')[-1] == "service-driver-show":
             add_vdu_specification_for_driver(parser)
-        # ENDS HERE.
         if self.allow_names:
             help_str = _('ID or name of %s to look up.')
         else:
@@ -749,20 +745,16 @@ class ShowCommand(VNFSvcCommand, show.ShowOne):
             data = obj_shower(_id, self.parent_id, **params)
         else:
             data = obj_shower(_id, **params)
-        # ADDED BY ANIRUDH
         if self.resource == 'service_driver':
             if 'vdu_details' in parsed_args:
                 if parsed_args.vdu_details:
                     data = data[self.resource]['driver_catalog']
                     for dct in data:
                         if dct['vdu_name'] == parsed_args.vdu_details:
-                            #dct['catalog'] = str(dct['catalog'].rstrip(']').lstrip('['))
                             dct['catalog'] = '\n'.join(eval(dct['catalog']))
                             data = {self.resource: dct}
                 else:
-                    #data['service_driver']['driver_catalog'] = '\n'.join(['\n'.join([str(n) for n in m.values()]) for m in data['service_driver']['driver_catalog']])
                     data['service_driver']['driver_catalog'] = ('\n\n'+'-'*120+'\n').join(['\n'.join([n[1] if n[0] != 'catalog' else '\n'.join(eval(n[1])) for n in m.items()]) for m in data['service_driver']['driver_catalog']])
-        # ENDS HERE
         self.format_output_data(data)
         resource = data[self.resource]
         if self.resource in data:

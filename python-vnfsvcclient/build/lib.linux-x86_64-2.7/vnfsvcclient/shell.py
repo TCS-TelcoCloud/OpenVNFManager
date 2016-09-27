@@ -106,13 +106,11 @@ COMMAND_V2 = {
     'template-show': template.ShowTemplate,
     'register': register.CreateUser,
     'dumpxml': dumpxml.DumpXml,
-    # ADDED BY ANIRUDH
     'metric-show': metric.ShowMetric,
     'service-driver-show': service_driver.ShowServiceDriver,
     'start-diagnostics': diagnostics.StartDiagnostics,
     'stop-diagnostics': diagnostics.StopDiagnostics,
     'upgrade-configuration': configuration.UpdateConfiguration
-    # ENDS HERE
 
 }
 

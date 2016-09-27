@@ -200,7 +200,6 @@ RESOURCE_ATTRIBUTE_MAP = {
              'default': '',
          },
      },
-    # NOTE(Harikrishna): Added for diagnostics
     'diagnostics':{
          'tenant_id': {
              'allow_post': True,

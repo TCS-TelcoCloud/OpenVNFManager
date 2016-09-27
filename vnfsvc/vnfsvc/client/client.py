@@ -417,7 +417,6 @@ class NovaClient(Clients):
             ameta = image_metadata.get(attr) if image_metadata else default
             setattr(instance, attr, ameta)
   
-    # NOTE(Harikrishna): Added for diagnostics
     def get_server_interfaces(self, instance):
         return self._client.servers.interface_list(instance)
 

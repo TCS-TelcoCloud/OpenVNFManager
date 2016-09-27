@@ -31,6 +31,7 @@ class ActivateService(vnfsvcV20.CreateCommand):
             }
         }
         parsed_args.enable = parsed_args.enable.lower()
+        #check the flag
         if parsed_args.enable != 'true' and parsed_args.enable != 'false':
            raise exceptions.UserInputHandler(error_message='True/False')
 

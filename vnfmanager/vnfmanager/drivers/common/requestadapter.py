@@ -10,13 +10,10 @@ class HTTPClient(object):
  
         self.ip=ip
         self.port=port
-        #self.url=url
-        #lf.enpoint_url=None
         self.url="http://"+str(self.ip)+":"+str(port)
         self.headers = {'content-type': 'application/json',
                    'Accept': 'application/json'}
 
-        #pass
     def do_request(self,
                    requests_method,
                    uri,
@@ -42,7 +39,6 @@ class HTTPClient(object):
                                uri,
                                params=params,
                                expected_status_code=expected_status_code)
-        #pass
 
     def post(self, uri, data=None, params=None,
              expected_status_code=200):

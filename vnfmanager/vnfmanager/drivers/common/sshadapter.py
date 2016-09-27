@@ -17,10 +17,8 @@ class SSHClient(object):
             if client:
                 stdin,stdout,stderr= client.exec_command(command)
                 output = stdout.read()
-                #logger.debug("**********************************OUTPUT*********************************************************")
                 logger.debug(output)
                 err = stderr.read()
-                #logger.debug("**********************************ERROR********************************")
                 logger.debug(err)
                 if len(err) > 0:
                     logger.debug(err)
@@ -65,10 +63,8 @@ class SSHClient(object):
                         retry=retry - 1
                         break
                     else:
-                        #logger.debug("**********************************SLEEPING 3**************************************************")
                         time.sleep(3)
                 except:
-                    #logger.debug("**********************************SLEEPING 3*************************************************")
                     time.sleep(3)
                     retry = retry -1
                     logger.debug("unable to establish connection, Retrying to establish.")

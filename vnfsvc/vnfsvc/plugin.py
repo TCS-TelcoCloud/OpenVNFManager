@@ -140,7 +140,7 @@ class VNFPlugin(vnf_db.NetworkServicePluginDb):
         try:
             self.parser.read(config_file)
         except IOError:
-            self.logger.critical("No Configuration file exists")
+            self.logger.critical("No Configuration File Exists")
         self.config_file = config_file
 
         config.register_root_helper(self.conf)
@@ -159,6 +159,7 @@ class VNFPlugin(vnf_db.NetworkServicePluginDb):
 
     def auth(fun):
         def inn(self,*args,**kwargs):
+            #This decorator is used to obtain client for openstack projects
             context = args[0]
             self.novaclient = self._get_nova_client(context)
             self.glanceclient = self._get_glance_client(context)
@@ -267,11 +268,13 @@ class VNFPlugin(vnf_db.NetworkServicePluginDb):
 
     @auth    
     def create_service(self, context, service):
+        #This is method is used to bring up a network service
         nsd_id = str(uuid.uuid4())
         nsd_dict = {}
         nsd_dict['id'] = nsd_id
         nsd_dict['check'] = ''
-
+        
+         
         template = self.get_template_model(context, template_name=service['service']['name'], fields=None)
         if template:
              if  not template['status']:
@@ -361,7 +364,6 @@ class VNFPlugin(vnf_db.NetworkServicePluginDb):
             return nsd_dict
         return nsdb_dict
 
-    #ADDED BY ANIRUDH
 
     @auth
     def deploy_vnfs(self, context, nsd_id, servicename):

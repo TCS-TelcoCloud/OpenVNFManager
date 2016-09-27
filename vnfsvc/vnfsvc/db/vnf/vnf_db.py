@@ -122,15 +122,17 @@ class NetworkServicePluginDb(base_db.CommonDbMixin):
 
 
     def _make_service_dict(self, service_db, fields=None):
+        #This method filters data obtained from db
         LOG.debug(_('service_db %s'), service_db)
         res = {}
-        key_list = ('id', 'vnfm_id', 'vdus', 'networks', 'subnets','router','service_type','status')
+        key_list = ('id', 'vnfm_id', 'vdus', 'networks', 'subnets','router','service_type','status','template_id')
         res.update((key, service_db[key]) for key in key_list)
         return self._fields(res, fields)
 
 
 
     def _make_template_dict(self, template_db, fields=None, single=False):
+        #This method filters data obtained from db
         LOG.debug(_('template_db %s'), template_db)
         res = {}
         if single:
@@ -168,7 +170,6 @@ class NetworkServicePluginDb(base_db.CommonDbMixin):
         template = self.get_template_model(context, template_id=activate['activate']['template_id'], fields = None)
         return template
 
-    # ADDED BY ANIRUDH
     def _make_driver_configuration_dict(self, driver_configuration, fields=None):
         LOG.debug(_('driver configuration databse %s'), driver_configuration)
         res = {#'id': driver_configuration['template_id'],
@@ -176,7 +177,6 @@ class NetworkServicePluginDb(base_db.CommonDbMixin):
                'flavour': driver_configuration['flavour'],
                'vdu_name': driver_configuration['vdu_name']}
         return self._fields(res, fields)
-        # ENDS HERE
 
     def get_manager_info(self, context):
         services = self._model_query(context, NetworkService).all()
